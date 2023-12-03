@@ -1,0 +1,179 @@
+{
+  "name": "code-coverage",
+  "displayName": "Code Coverage",
+  "description": "Boost test coverage and reliability with this easy-to-use code coverage analysis tool",
+  "version": "1.11.0",
+  "publisher": "markis",
+  "icon": "images/icon.png",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.66.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/markis/vscode-code-coverage.git"
+  },
+  "categories": [
+    "Testing"
+  ],
+  "keywords": [
+    "analysis",
+    "code coverage",
+    "quality assurance",
+    "lcov",
+    "productivity",
+    "test coverage",
+    "unit test"
+  ],
+  "activationEvents": [
+    "workspaceContains:**/lcov*.info",
+    "onLanguage:clojure",
+    "onLanguage:coffeescript",
+    "onLanguage:c",
+    "onLanguage:cpp",
+    "onLanguage:csharp",
+    "onLanguage:dart",
+    "onLanguage:fsharp",
+    "onLanguage:go",
+    "onLanguage:elixir",
+    "onLanguage:haxe",
+    "onLanguage:java",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact",
+    "onLanguage:objective-c",
+    "onLanguage:objective-cpp",
+    "onLanguage:perl",
+    "onLanguage:perl6",
+    "onLanguage:php",
+    "onLanguage:python",
+    "onLanguage:ruby",
+    "onLanguage:rust",
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:shellscript",
+    "onLanguage:vb"
+  ],
+  "main": "./dist/code-coverage.js",
+  "contributes": {
+    "configuration": {
+      "title": "Code coverage",
+      "properties": {
+        "markiscodecoverage.searchCriteria": {
+          "type": "string",
+          "default": "coverage/lcov*.info",
+          "description": "Search location for lcov files"
+        },
+        "markiscodecoverage.coverageThreshold": {
+          "type": "number",
+          "default": 80,
+          "minimum": 0,
+          "maximum": 100,
+          "description": "The desired code coverage percentage ratio per-file"
+        },
+        "markiscodecoverage.enableOnStartup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable code coverage on startup"
+        }
+      }
+    },
+    "activationEvents": [
+      "onCommand:code-coverage.hide",
+      "onCommand:code-coverage.show"
+    ],
+    "commands": [
+      {
+        "command": "code-coverage.hide",
+        "title": "Hide Code Coverage"
+      },
+      {
+        "command": "code-coverage.show",
+        "title": "Show Code Coverage"
+      }
+    ],
+    "colors": [
+      {
+        "id": "markiscodecoverage.colorUncoveredLineRuler",
+        "description": "Decoration color for uncovered lines",
+        "defaults": {
+          "dark": "#FF7F27BF",
+          "light": "#FF7F27FF",
+          "highContrast": "#FF7F27FF"
+        }
+      },
+      {
+        "id": "markiscodecoverage.colorUncoveredLineText",
+        "description": "Decoration color for uncovered lines",
+        "defaults": {
+          "dark": "#FF7F2750",
+          "light": "#FF7F2750",
+          "highContrast": "#FF7F2750"
+        }
+      },
+      {
+        "id": "markiscodecoverage.insufficientCoverageForeground",
+        "description": "Decoration color for files with insufficient coverage",
+        "defaults": {
+          "light": "#AD0707FF",
+          "dark": "#C74E39FF",
+          "highContrast": "#C74E39FF"
+        }
+      }
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "camelcase": 2,
+      "no-undef": 0,
+      "no-unused-vars": 0
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "compile:watch": "tsc -watch -p ./",
+    "preformat": "prettier --write src/**/*.ts test/**/*.ts",
+    "format": "eslint --fix src/**/*.ts test/**/*.ts",
+    "prelint": "prettier --check src/**/*.ts test/**/*.ts",
+    "lint": "eslint src/**/*.ts test/**/*.ts",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/run-test.js",
+    "package": "runtool vite build && vsce package --pre-release --no-dependencies"
+  },
+  "devDependencies": {
+    "@pakaf/dev-shared-configs": "workspace:*",
+    "@tsconfig/recommended": "^1.0.2",
+    "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.5.0",
+    "@types/vscode": "^1.66.0",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "@vscode/test-electron": "^2.3.4",
+    "@vscode/vsce": "^2.22.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "^9.0.0",
+    "glob": "^10.3.3",
+    "mocha": "^10.2.0",
+    "prettier": "^3.0.2",
+    "typescript": "^5.1.6"
+  }
+}
