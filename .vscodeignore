@@ -9,3 +9,4 @@ src/**
 .gitignore
 package-lock.json
 tsconfig.json
+vite.config.mjs

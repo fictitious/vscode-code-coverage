@@ -53,7 +53,7 @@
     "onLanguage:shellscript",
     "onLanguage:vb"
   ],
-  "main": "./out/src/extension.js",
+  "main": "./dist/code-coverage.js",
   "contributes": {
     "configuration": {
       "title": "Code coverage",
@@ -148,7 +148,6 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
     "compile": "tsc -p ./",
     "compile:watch": "tsc -watch -p ./",
     "preformat": "prettier --write src/**/*.ts test/**/*.ts",
@@ -156,9 +155,11 @@
     "prelint": "prettier --check src/**/*.ts test/**/*.ts",
     "lint": "eslint src/**/*.ts test/**/*.ts",
     "pretest": "npm run compile",
-    "test": "node ./out/test/run-test.js"
+    "test": "node ./out/test/run-test.js",
+    "package": "runtool vite build && vsce package --pre-release --no-dependencies"
   },
   "devDependencies": {
+    "@pakaf/dev-shared-configs": "workspace:*",
     "@tsconfig/recommended": "^1.0.2",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
@@ -167,6 +168,7 @@
     "@typescript-eslint/eslint-plugin": "^6.4.0",
     "@typescript-eslint/parser": "^6.4.0",
     "@vscode/test-electron": "^2.3.4",
+    "@vscode/vsce": "^2.22.0",
     "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "glob": "^10.3.3",

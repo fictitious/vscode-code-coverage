@@ -7,3 +7,6 @@ example/out
 example/package-lock.json
 node_modules
 out
+dist
+!unpacked/extension/dist
+code-coverage-*.vsix
